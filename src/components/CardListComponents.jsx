@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import GlobalContext from '../contexts/GlobalContext';
+
 
 function CardComponent({ articolo, onRemove, onClick }) {
     const { titolo, immagine, contenuto, categoria, tags, stato, email } = articolo;
@@ -39,19 +41,22 @@ function CardComponent({ articolo, onRemove, onClick }) {
     );
 }
 export default function CardListComponent() {
-    const [articoli, setArticoli] = useState([]);
+    // const [articoli, setArticoli] = useState([]);
 
     // Chiamata API per ottenere gli articoli
-    useEffect(() => {
-        axios
-            .get("http://localhost:3000/api/post")
-            .then((response) => {
-                setArticoli(response.data.post); // Imposta gli articoli nello stato
-            })
-            .catch((error) => {
-                console.error("Errore durante il caricamento dei post:", error);
-            });
-    }, []);
+    // useEffect(() => {
+    //     axios
+    //         .get("http://localhost:3000/api/post")
+    //         .then((response) => {
+    //             setArticoli(response.data.post); // Imposta gli articoli nello stato
+    //         })
+    //         .catch((error) => {
+    //             console.error("Errore durante il caricamento dei post:", error);
+    //         });
+    // }, []);
+
+    const { articoli } = useContext(GlobalContext);
+
     const handleRemove = (index) => {
         const nuoviArticoli = articoli.filter((_, i) => i !== index);
         setArticoli(nuoviArticoli);

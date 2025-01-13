@@ -1,6 +1,9 @@
 import "./BarraDiNavigazione.css";
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
+
+
+
 export default function BarraDiNavigazione() {
 
     const [searchTerm, setSearchTerm] = useState("");
@@ -17,11 +20,11 @@ export default function BarraDiNavigazione() {
 
     //scolgo la chiamata api per i post
 
-    axios
-        .get(`http://localhost:3000/api/post/search?query=${searchTerm}`)
-        .then((response) => {
-            setPost(response.data); //si aggiorna lo ostato con i risultati di ricerca
-        })
+    // axios
+    //     .get(`http://localhost:3000/api/post/search?query=${searchTerm}`)
+    //     .then((response) => {
+    //         setPost(response.data); //si aggiorna lo ostato con i risultati di ricerca
+    //     })
 
     return (
         <>
@@ -45,14 +48,14 @@ export default function BarraDiNavigazione() {
                     {posts.length > 0 ? (
                         <ul>
                             {posts.map((post) => (
-                                <li key={post._id}>
+                                <li key={post.id}>
                                     <h5>{post.titolo}</h5>
                                     <p>{post.contenuto}</p>
                                 </li>
                             ))}
                         </ul>
                     ) : (
-                        <p>Nessun risultato trovato.</p>
+                        <p>cerca</p>
                     )}
                 </div>
             </div>

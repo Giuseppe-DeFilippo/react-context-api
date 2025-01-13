@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { GlobalContext } from "../contexts/GlobalContext";
+import GlobalContext from "../contexts/GlobalContext";
 
 
 export default function SingleCardComponent() {
     const { postID } = useParams(); //si ottiene l id dell url
     const [post, setPost] = useState(null);
 
-    // const { count } = useContext(GlobalContext);
+    const { count } = useContext(GlobalContext);
 
 
 
